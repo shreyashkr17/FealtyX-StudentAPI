@@ -12,7 +12,6 @@ A simple API built with Go for managing student records. The API supports CRUD o
 - [API Endpoints](#api-endpoints)
 - [Concurrency Management](#concurrency-management)
 - [Ollama Integration](#ollama-integration)
-- [License](#license)
 
 ## Features
 - Create, read, update, and delete student records.
