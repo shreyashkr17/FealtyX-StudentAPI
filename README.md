@@ -37,7 +37,7 @@ To run the application using Docker, follow these steps:
    ```bash
    docker run -p 8080:8080 --env-file .env student-api
 
-### Using Docker
+### Manual Installation
 To run the application without Docker, follow these steps:
 1. Ensure you have Go installed on your machine (version 1.20 or higher).
 2. Clone the repository:
@@ -61,12 +61,55 @@ Once the application is running, it listens for incoming HTTP requests on  `http
 ## API Endpoints
 
 ### Students
+
 1. `GET /students/ ` - Retrieve all students.
+
+    For localhost endpoint: 
+      - ```
+        http://localhost:8080/students/`
+    For deployed endpoint: 
+      - ```
+        https://api.shortlycut.xyz/students/`
 2. `POST /students/` - Create a new student.
+   
+    For localhost endpoint: 
+      - ```
+        http://localhost:8080/students/`
+    For deployed endpoint: 
+      - ```
+        https://api.shortlycut.xyz/students/`
 3. `GET /students/{id}` - Retrieve a student by ID.
+   
+    For localhost endpoint: 
+      - ```
+        http://localhost:8080/students/{id}`
+    For deployed endpoint: 
+      - ```
+        https://api.shortlycut.xyz/students/{id}
 4. `PUT /students/{id}` - Update a student by ID.
+   
+    For localhost endpoint: 
+      - ```
+        http://localhost:8080/students/{id}
+    For deployed endpoint: 
+      - ```
+        https://api.shortlycut.xyz/students/{id}
 5. `DELETE /students/{id}` - Delete a student by ID.
-6. `GET /students/{id}/summary` - Get a summary of a student by ID (uses Ollama).
+   
+    For localhost endpoint: 
+      - ```
+        http://localhost:8080/students/{id}`
+    For deployed endpoint: 
+      - ```
+        https://api.shortlycut.xyz/students/{id}
+7. `GET /students/{id}/summary` - Get a summary of a student by ID (uses Ollama).
+   
+    For localhost endpoint: 
+      - ```
+        http://localhost:8080/students/{id}/summary
+    For deployed endpoint: 
+      - ```
+        https://api.shortlycut.xyz/students/{id}/summary
 
 
 ## Concurrency Management
