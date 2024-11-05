@@ -70,7 +70,15 @@ Once the application is running, it listens for incoming HTTP requests on  `http
     For deployed endpoint: 
       - ```
         https://api.shortlycut.xyz/students/`
-2. `POST /students/` - Create a new student.
+
+    Example Body `json`:
+      - ```
+        {
+          "name": "Jane Doe",
+          "age": 20,
+          "email": "jane.doe@example.com"
+        }
+3. `POST /students/` - Create a new student.
    
     For localhost endpoint: 
       - ```
@@ -78,7 +86,8 @@ Once the application is running, it listens for incoming HTTP requests on  `http
     For deployed endpoint: 
       - ```
         https://api.shortlycut.xyz/students/`
-3. `GET /students/{id}` - Retrieve a student by ID.
+
+4. `GET /students/{id}` - Retrieve a student by ID.
    
     For localhost endpoint: 
       - ```
@@ -86,7 +95,7 @@ Once the application is running, it listens for incoming HTTP requests on  `http
     For deployed endpoint: 
       - ```
         https://api.shortlycut.xyz/students/{id}
-4. `PUT /students/{id}` - Update a student by ID.
+5. `PUT /students/{id}` - Update a student by ID.
    
     For localhost endpoint: 
       - ```
@@ -94,7 +103,16 @@ Once the application is running, it listens for incoming HTTP requests on  `http
     For deployed endpoint: 
       - ```
         https://api.shortlycut.xyz/students/{id}
-5. `DELETE /students/{id}` - Delete a student by ID.
+
+    
+    Example Body `json`:
+      - ```
+        {
+          "name": "Shreyash Kumar",
+          "age": 21,
+          "email": "rshreyash08@gmail.com"
+        }
+6. `DELETE /students/{id}` - Delete a student by ID.
    
     For localhost endpoint: 
       - ```
