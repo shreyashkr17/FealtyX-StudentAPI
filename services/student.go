@@ -57,13 +57,13 @@ func UpdateStudent(id int, updatedStudent models.Student) (models.Student, error
 	return updatedStudent, nil
 }
 
-func DeleteStudent(id int) error {
+func DeleteStudent(id int) string {
 	studentMux.Lock()
 	defer studentMux.Unlock()
 
 	if _, exists := students[id]; !exists {
-		return errors.New("student not found")
+		return "student not found"
 	}
 	delete(students, id)
-	return nil
+	return "Student deleted succesfully"
 }

@@ -106,9 +106,11 @@ func UpdateStudent(w http.ResponseWriter, r *http.Request, id int) {
 func DeleteStudent(w http.ResponseWriter, r *http.Request, id int) {
 	mu.Lock()
 	defer mu.Unlock()
-	if err := services.DeleteStudent(id); err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+	message := services.DeleteStudent(id)
+	if message == "student not found" {
+		http.Error(w, message, http.StatusNotFound)
 		return
 	}
-	w.WriteHeader(http.StatusNoContent)
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(message))
 }
