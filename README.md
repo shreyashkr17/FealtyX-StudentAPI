@@ -66,10 +66,22 @@ Once the application is running, it listens for incoming HTTP requests on  `http
 
     For localhost endpoint: 
       - ```
-        http://localhost:8080/students/`
+        curl --location 'http://localhost:8080/students/' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "name": "Jane Doe",
+            "age": 20,
+            "email": "jane.doe@example.com"
+        }'
     For deployed endpoint: 
       - ```
-        https://api.shortlycut.xyz/students/`
+        curl --location 'https://api.shortlycut.xyz/students/' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "name": "Jane Doe",
+            "age": 20,
+            "email": "jane.doe@example.com"
+        }'
 
     Example Body `json`:
       - ```
@@ -78,31 +90,45 @@ Once the application is running, it listens for incoming HTTP requests on  `http
           "age": 20,
           "email": "jane.doe@example.com"
         }
+
 3. `POST /students/` - Create a new student.
    
     For localhost endpoint: 
       - ```
-        http://localhost:8080/students/`
+        curl --location 'http://localhost:8080/students/'
     For deployed endpoint: 
       - ```
-        https://api.shortlycut.xyz/students/`
+        curl --location 'https://api.shortlycut.xyz/students/'
 
 4. `GET /students/{id}` - Retrieve a student by ID.
    
-    For localhost endpoint: 
+    For localhost endpoint (Replace `{id}` with suitable ID, e.g. : 1) : 
       - ```
-        http://localhost:8080/students/{id}`
-    For deployed endpoint: 
+        curl --location 'http://localhost:8080/students/{id}'
+    For deployed endpoint (Replace `{id}` with suitable ID, e.g. : 1) : 
       - ```
-        https://api.shortlycut.xyz/students/{id}
+        curl --location 'https://api.shortlycut.xyz/students/{id}'
+
 5. `PUT /students/{id}` - Update a student by ID.
    
-    For localhost endpoint: 
+    For localhost endpoint (Replace `{id}` with suitable ID, e.g. : 1): 
       - ```
-        http://localhost:8080/students/{id}
-    For deployed endpoint: 
+        curl --location --request PUT 'http://localhost:8080/students/{id}' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "name": "Shreyash Kumar",
+            "age": 22,
+            "email": "rshreyash08@gmail.com"
+        }'
+    For deployed endpoint (Replace `{id}` with suitable ID, e.g. : 1): 
       - ```
-        https://api.shortlycut.xyz/students/{id}
+        curl --location --request PUT 'https://api.shortlycut.xyz/students/{id}' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "name": "Shreyash Kumar",
+            "age": 22,
+            "email": "rshreyash08@gmail.com"
+        }'
 
     
     Example Body `json`:
@@ -116,10 +142,10 @@ Once the application is running, it listens for incoming HTTP requests on  `http
    
     For localhost endpoint: 
       - ```
-        http://localhost:8080/students/{id}`
+        curl --location --request DELETE 'http://localhost:8080/students/{id}'
     For deployed endpoint: 
       - ```
-        https://api.shortlycut.xyz/students/{id}
+        curl --location --request DELETE 'https://api.shortlycut.xyz/students/{id}'
 7. `GET /students/{id}/summary` - Get a summary of a student by ID (uses Ollama).
    
     For localhost endpoint: 
