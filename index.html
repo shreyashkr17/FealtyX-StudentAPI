@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student API Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Raleway", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 2rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #34495e;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background-color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #333;
+        }
+
+        .endpoint {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .method {
+            font-weight: 600;
+            color: #3498db;
+        }
+
+        .navigation {
+            background-color: #2c3e50;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+
+        .navigation a:hover {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student API</h1>
+        <p>A simple API built with Go for managing student records. The API supports CRUD operations for students and integrates with the Ollama service to generate student summaries.</p>
+
+        <div class="navigation">
+            <a href="/">Home</a>
+            <a href="#features">Features</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#installation">Installation</a>
+            <a href="#running">Running</a>
+            <a href="#endpoints">API Endpoints</a>
+            <a href="#concurrency">Concurrency</a>
+            <a href="#ollama">Ollama</a>
+        </div>
+
+        <h2 id="features">Features</h2>
+        <ul>
+            <li>Create, read, update, and delete student records.</li>
+            <li>Generate summaries for student profiles using the Ollama service.</li>
+        </ul>
+
+        <h2 id="technologies">Technologies Used</h2>
+        <ul>
+            <li>Go (Golang)</li>
+            <li>Docker</li>
+            <li>JSON for data interchange</li>
+        </ul>
+
+        <h2 id="installation">Installation</h2>
+        
+        <h3>Using Docker</h3>
+        <p>To run the application using Docker, follow these steps:</p>
+        <ol>
+            <li>Ensure you have Docker installed on your machine.</li>
+            <li>Build the Docker image:
+                <pre><code>docker build -t student-api .</code></pre>
+            </li>
+            <li>Run the Docker container:
+                <pre><code>docker run -p 8080:8080 --env-file .env student-api</code></pre>
+            </li>
+        </ol>
+
+        <h3>Manual Installation</h3>
+        <ol>
+            <li>Ensure you have Go installed on your machine (version 1.20 or higher).</li>
+            <li>Clone the repository:
+                <pre><code>git clone https://github.com/shreyashkr17/FealtyX-StudentAPI
+</code></pre>
+            </li>
+            <li>Install dependencies:
+                <pre><code>go mod tidy</code></pre>
+            </li>
+            <li>Run the application:
+                <pre><code>go run main.go</code></pre>
+            </li>
+        </ol>
+
+        <h2 id="running">Running the Application</h2>
+        <p>Once the application is running, it listens for incoming HTTP requests on <code>http://localhost:8080</code>.</p>
+
+        <h2 id="endpoints">API Endpoints</h2>
+        
+        <div class="endpoint">
+            <p><span class="method">GET</span> /students/ - Retrieve all students</p>
+            <pre><code>curl --location 'https://api.shortlycut.xyz/students/'</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <p><span class="method">POST</span> /students/ - Create a new student</p>
+            <pre><code>curl --location 'https://api.shortlycut.xyz/students/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Jane Doe",
+    "age": 20,
+    "email": "jane.doe@example.com"
+}'</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <p><span class="method">GET</span> /students/{id} - Retrieve a student by ID</p>
+            <pre><code>curl --location 'https://api.shortlycut.xyz/students/1'</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <p><span class="method">PUT</span> /students/{id} - Update a student by ID</p>
+            <pre><code>curl --location --request PUT 'https://api.shortlycut.xyz/students/1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Shreyash Kumar",
+    "age": 22,
+    "email": "rshreyash08@gmail.com"
+}'</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <p><span class="method">DELETE</span> /students/{id} - Delete a student by ID</p>
+            <pre><code>curl --location --request DELETE 'https://api.shortlycut.xyz/students/1'</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <p><span class="method">GET</span> /students/{id}/summary - Get a summary of a student by ID</p>
+            <pre><code>curl --location 'https://api.shortlycut.xyz/students/1/summary'</code></pre>
+        </div>
+
+        <h2 id="concurrency">Concurrency Management</h2>
+        <p>Concurrency is handled in the application using Go's goroutines and mutexes. The <code>sync.Mutex</code> is used to ensure that only one goroutine can access or modify the student data at a time.</p>
+        <p>Key points include:</p>
+        <ul>
+            <li>Use of <code>sync.Mutex</code> to lock access to critical sections of the code where student data is modified.</li>
+            <li>Functions such as <code>GetAllStudents</code>, <code>CreateStudent</code>, <code>GetStudentByID</code>, <code>UpdateStudent</code>, and <code>DeleteStudent</code> are all wrapped in mu.Lock() and mu.Unlock() to ensure thread safety.</li>
+        </ul>
+
+        <h2 id="ollama">Ollama Integration</h2>
+        <p>The application integrates with the Ollama service to generate student summaries. When a request is made to the <code>/students/{id}/summary</code> endpoint, the application:</p>
+        <ol>
+            <li>Fetches the student data.</li>
+            <li>Constructs a prompt for the Ollama service.</li>
+            <li>Sends a request to the Ollama API and retrieves the summary.</li>
+            <li>Returns the summary as a response.</li>
+        </ol>
+        <p>The integration is handled in the GenerateStudentSummary function located in the <code>services/ollama.go</code> file.</p>
+    </div>
+</body>
+</html>

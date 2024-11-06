@@ -23,8 +23,16 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
+
+	// Serve index.html for the root path
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "index.html")
+	})
+
+	// Add existing student handler
 	mux.HandleFunc("/students/", handlers.StudentHandler)
 
+	// Wrap with logging middleware
 	loggedMux := middleware.LoggingMiddleware(mux)
 
 	log.Printf("Server running on port %s", port)
